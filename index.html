@@ -46,6 +46,163 @@
             padding-bottom: 60px;
         }
 
+        /* User Requested Link & Table Border Styles */
+        a {
+            text-decoration: none;
+            color: #464feb;
+            transition: color 0.2s ease;
+        }
+
+        a:hover {
+            color: #60a5fa;
+            text-decoration: underline;
+        }
+
+        tr th, tr td {
+            border: 1px solid #e6e6e6;
+        }
+
+        tr th {
+            background-color: #f5f5f5;
+        }
+
+        body tr th, body tr td {
+            border: 1px solid rgba(230, 230, 230, 0.18);
+        }
+
+        body tr th {
+            background-color: rgba(245, 245, 245, 0.08);
+            color: var(--text-main);
+        }
+
+        /* Asset Composition & Treemap Styling */
+        .bs-visuals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(580px, 1fr));
+            gap: 24px;
+            margin-top: 24px;
+        }
+
+        .bs-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .bs-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .bs-card-header h3 {
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .bs-card-header p {
+            font-size: 13px;
+            color: var(--text-sub);
+        }
+
+        .year-select {
+            background: #1e293b;
+            border: 1px solid var(--border-subtle);
+            color: var(--text-main);
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            font-family: var(--font-sans);
+            cursor: pointer;
+        }
+
+        .treemap-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 12px;
+            height: 320px;
+            width: 100%;
+        }
+
+        .treemap-tile {
+            border-radius: 8px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.25s ease;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .treemap-tile:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .treemap-cat {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            opacity: 0.85;
+        }
+
+        .treemap-name {
+            font-size: 15px;
+            font-weight: 800;
+            margin-top: 2px;
+            color: #ffffff;
+        }
+
+        .treemap-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .treemap-val {
+            font-size: 18px;
+            font-weight: 800;
+            font-family: var(--font-mono);
+        }
+
+        .treemap-badge {
+            font-size: 12px;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .tile-inventory {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.25), rgba(217, 119, 6, 0.45));
+            border-left: 4px solid #f59e0b;
+        }
+
+        .tile-cash {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.25), rgba(29, 78, 216, 0.45));
+            border-left: 4px solid #2563eb;
+        }
+
+        .tile-receivables {
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.25), rgba(14, 116, 144, 0.45));
+            border-left: 4px solid #06b6d4;
+        }
+
+        .tile-fixed {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.25), rgba(109, 40, 217, 0.45));
+            border-left: 4px solid #8b5cf6;
+        }
+
         .container {
             max-width: 1400px;
             margin: 0 auto;
@@ -561,13 +718,19 @@
             margin-top: 4px;
         }
 
-        /* S-Curve Chart Container */
+        /* S-Curve & Waterfall Chart Container */
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(580px, 1fr));
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
         .chart-container {
             background: var(--bg-card);
             border: 1px solid var(--border-subtle);
             border-radius: 12px;
             padding: 24px;
-            margin-bottom: 24px;
             position: relative;
         }
 
@@ -576,6 +739,8 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
         .chart-title-wrap h3 {
@@ -592,6 +757,30 @@
             position: relative;
             height: 360px;
             width: 100%;
+        }
+
+        .chart-legend-custom {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .btn-toggle-view {
+            background: #1e293b;
+            border: 1px solid var(--border-subtle);
+            color: var(--text-sub);
+            padding: 5px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-toggle-view:hover, .btn-toggle-view.active {
+            background: var(--accent-blue);
+            color: white;
+            border-color: var(--accent-blue);
         }
 
         /* Financial Statement Table (Tufte Style) */
@@ -867,16 +1056,36 @@
             </div>
         </div>
 
-        <!-- S-Curve Comparison Chart -->
-        <div class="chart-container">
-            <div class="chart-header">
-                <div class="chart-title-wrap">
-                    <h3>Cumulative Cash Flow & Project Realization S-Curve</h3>
-                    <p>Comparing Baseline Trajectory vs. AI Recommended Action Prognosis (12-Month Realization)</p>
+        <!-- S-Curve & Waterfall Charts Grid -->
+        <div class="charts-grid">
+            <!-- S-Curve Comparison Chart -->
+            <div class="chart-container">
+                <div class="chart-header">
+                    <div class="chart-title-wrap">
+                        <h3>Cumulative Cash Flow & Project Realization S-Curve</h3>
+                        <p>Comparing Baseline Trajectory vs. AI Recommended Action Prognosis (12-Month Realization)</p>
+                    </div>
+                </div>
+                <div class="chart-wrapper">
+                    <canvas id="scurveChart"></canvas>
                 </div>
             </div>
-            <div class="chart-wrapper">
-                <canvas id="scurveChart"></canvas>
+
+            <!-- Cash Flow Waterfall Chart -->
+            <div class="chart-container">
+                <div class="chart-header">
+                    <div class="chart-title-wrap">
+                        <h3>Cash Flow Waterfall Bridge (Profit / Result → Change in Cash)</h3>
+                        <p>Decomposition of Operating Result, Depr., Working Capital, Capex & Loans</p>
+                    </div>
+                    <div class="chart-legend-custom">
+                        <button class="btn-toggle-view active" id="btnWfStandard" onclick="toggleWaterfallView('standard')">Standard Example</button>
+                        <button class="btn-toggle-view" id="btnWfPrognosis" onclick="toggleWaterfallView('prognosis')">Company Forecast</button>
+                    </div>
+                </div>
+                <div class="chart-wrapper">
+                    <canvas id="waterfallChart"></canvas>
+                </div>
             </div>
         </div>
 
@@ -899,6 +1108,43 @@
                     <!-- Populated via JS -->
                 </tbody>
             </table>
+        </div>
+
+        <!-- Balance Sheet Asset Composition Visuals (Stacked Bar & Treemap) -->
+        <div class="bs-visuals-grid">
+            <!-- Visual 1: Multi-Year Asset Composition Stacked Bar -->
+            <div class="bs-card">
+                <div class="bs-card-header">
+                    <div>
+                        <h3>📊 Multi-Year Asset Composition (regnskapsår)</h3>
+                        <p>Development of Total Assets & item breakdown by year (nokkel_navn)</p>
+                    </div>
+                </div>
+                <div style="position: relative; height: 320px; width: 100%;">
+                    <canvas id="multiYearAssetsChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Visual 2: Asset Treemap Snapshot -->
+            <div class="bs-card">
+                <div class="bs-card-header">
+                    <div>
+                        <h3>🧩 Treemap Asset Composition (underkategori)</h3>
+                        <p>Part-to-whole capital distribution snapshot (excluding summary totals)</p>
+                    </div>
+                    <div style="display: flex; gap: 8px; align-items: center;">
+                        <span style="font-size: 11px; color: var(--text-sub);">År:</span>
+                        <select id="treemapYearSelect" class="year-select" onchange="renderAssetTreemap(this.value)">
+                            <option value="2025">2025 (ACT)</option>
+                            <option value="2024">2024 (ACT)</option>
+                            <option value="2023">2023 (ACT)</option>
+                            <option value="2026">2026 (FCT)</option>
+                            <option value="2030">2030 (FCT)</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="treemapContainer"></div>
+            </div>
         </div>
     </div>
 </div>
@@ -1283,6 +1529,20 @@ Respond ONLY with valid JSON in this exact structure without markdown backticks:
         // Render S-Curve Chart
         renderSCurveChart(baseCash, progCash);
 
+        // Compute Company Waterfall Items
+        lastCompanyWaterfallItems = [
+            { name: 'Result', value: Math.round(progEbitdaMNOK * 100), type: 'total' },
+            { name: 'Depr.', value: Math.round(progEbitdaMNOK * 20), type: 'increase' },
+            { name: 'Receivables', value: Math.round(-progEbitdaMNOK * 30), type: 'decrease' },
+            { name: 'Inventory', value: Math.round(-progEbitdaMNOK * 20), type: 'decrease' },
+            { name: 'Payables', value: Math.round(progEbitdaMNOK * 10), type: 'increase' },
+            { name: 'Capex', value: Math.round(-progEbitdaMNOK * 50), type: 'decrease' },
+            { name: 'Loans', value: Math.round(progEbitdaMNOK * 40), type: 'increase' },
+            { name: 'Change in Cash', value: Math.round(progCash * 100), type: 'total' }
+        ];
+
+        renderWaterfallChart(currentWaterfallMode === 'standard' ? standardWaterfallData : lastCompanyWaterfallItems);
+
         // Render Tufte Table
         renderTufteTable(baseRev, progRev, baseEbitdaMNOK, progEbitdaMNOK, baseRisk, progRisk, baseCash, progCash);
     }
@@ -1407,8 +1667,335 @@ Respond ONLY with valid JSON in this exact structure without markdown backticks:
         }).join('');
     }
 
-    // Initial default search load
+    // Waterfall Chart Plugins & Logic
+    let waterfallChartInstance = null;
+    let currentWaterfallMode = 'standard';
+    let lastCompanyWaterfallItems = null;
+
+    const waterfallConnectorPlugin = {
+        id: 'waterfallConnector',
+        beforeDatasetsDraw(chart) {
+            const { ctx, scales: { y } } = chart;
+            const meta = chart.getDatasetMeta(0);
+            if (!meta || !meta.data) return;
+
+            ctx.save();
+            ctx.strokeStyle = 'rgba(148, 163, 184, 0.4)';
+            ctx.setLineDash([3, 3]);
+            ctx.lineWidth = 1;
+
+            for (let i = 0; i < meta.data.length - 1; i++) {
+                const currentBar = meta.data[i];
+                const nextBar = meta.data[i + 1];
+                const raw = chart.data.datasets[0].data[i];
+                if (!raw) continue;
+
+                const endVal = Array.isArray(raw) ? raw[1] : raw;
+                const yPos = y.getPixelForValue(endVal);
+
+                ctx.beginPath();
+                ctx.moveTo(currentBar.x, yPos);
+                ctx.lineTo(nextBar.x, yPos);
+                ctx.stroke();
+            }
+            ctx.restore();
+        }
+    };
+
+    const waterfallDataLabelsPlugin = {
+        id: 'waterfallDataLabels',
+        afterDatasetsDraw(chart) {
+            const { ctx, scales: { y } } = chart;
+            const meta = chart.getDatasetMeta(0);
+            if (!meta || !meta.data) return;
+
+            ctx.save();
+            ctx.font = '600 11px "JetBrains Mono", monospace';
+            ctx.textAlign = 'center';
+
+            meta.data.forEach((bar, i) => {
+                const raw = chart.data.datasets[0].data[i];
+                const item = chart.data.waterfallItems[i];
+                if (!raw || !item) return;
+
+                let valStr = '';
+                if (item.type === 'total') {
+                    valStr = typeof item.value === 'number' ? (item.value >= 0 ? item.value.toLocaleString() : `(${Math.abs(item.value).toLocaleString()})`) : item.value;
+                } else {
+                    valStr = (item.value > 0 ? '+' : '') + item.value.toLocaleString();
+                }
+
+                const yStart = y.getPixelForValue(raw[0]);
+                const yEnd = y.getPixelForValue(raw[1]);
+                const topY = Math.min(yStart, yEnd);
+
+                if (item.type === 'total') {
+                    ctx.fillStyle = '#f1f5f9';
+                } else if (item.value >= 0) {
+                    ctx.fillStyle = '#34d399';
+                } else {
+                    ctx.fillStyle = '#f87171';
+                }
+
+                ctx.fillText(valStr, bar.x, topY - 6);
+            });
+
+            ctx.restore();
+        }
+    };
+
+    const standardWaterfallData = [
+        { name: 'Result', value: 1000, type: 'total' },
+        { name: 'Depr.', value: 200, type: 'increase' },
+        { name: 'Receivables', value: -300, type: 'decrease' },
+        { name: 'Inventory', value: -200, type: 'decrease' },
+        { name: 'Payables', value: 100, type: 'increase' },
+        { name: 'Capex', value: -500, type: 'decrease' },
+        { name: 'Loans', value: 400, type: 'increase' },
+        { name: 'Change in Cash', value: 700, type: 'total' }
+    ];
+
+    function toggleWaterfallView(mode) {
+        currentWaterfallMode = mode;
+        const btnStd = document.getElementById('btnWfStandard');
+        const btnProg = document.getElementById('btnWfPrognosis');
+        if (btnStd) btnStd.classList.toggle('active', mode === 'standard');
+        if (btnProg) btnProg.classList.toggle('active', mode === 'prognosis');
+
+        if (mode === 'standard') {
+            renderWaterfallChart(standardWaterfallData);
+        } else {
+            if (lastCompanyWaterfallItems) {
+                renderWaterfallChart(lastCompanyWaterfallItems);
+            } else {
+                renderWaterfallChart(standardWaterfallData);
+            }
+        }
+    }
+
+    function renderWaterfallChart(itemsOverride) {
+        const canvas = document.getElementById('waterfallChart');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        if (waterfallChartInstance) {
+            waterfallChartInstance.destroy();
+        }
+
+        const items = itemsOverride || standardWaterfallData;
+        const labels = items.map(it => it.name);
+
+        let runningTotal = 0;
+        const ranges = [];
+        const bgColors = [];
+        const borderColors = [];
+
+        items.forEach((item, idx) => {
+            if (idx === 0) {
+                ranges.push([0, item.value]);
+                runningTotal = item.value;
+                bgColors.push('rgba(37, 99, 235, 0.85)');
+                borderColors.push('#3b82f6');
+            } else if (idx === items.length - 1) {
+                ranges.push([0, item.value]);
+                bgColors.push('rgba(6, 182, 212, 0.85)');
+                borderColors.push('#06b6d4');
+            } else {
+                const start = runningTotal;
+                runningTotal += item.value;
+                ranges.push([start, runningTotal]);
+                if (item.value >= 0) {
+                    bgColors.push('rgba(16, 185, 129, 0.85)');
+                    borderColors.push('#10b981');
+                } else {
+                    bgColors.push('rgba(239, 68, 68, 0.85)');
+                    borderColors.push('#ef4444');
+                }
+            }
+        });
+
+        waterfallChartInstance = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                waterfallItems: items,
+                datasets: [{
+                    label: 'Cash Flow Bridge',
+                    data: ranges,
+                    backgroundColor: bgColors,
+                    borderColor: borderColors,
+                    borderWidth: 1,
+                    borderRadius: 4,
+                    borderSkipped: false
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const idx = context.dataIndex;
+                                const item = items[idx];
+                                if (item.type === 'total') {
+                                    return `${item.name}: ${item.value.toLocaleString()}`;
+                                }
+                                return `${item.name}: ${item.value > 0 ? '+' : ''}${item.value.toLocaleString()}`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: { display: false },
+                        ticks: { color: '#94a3b8', font: { family: 'JetBrains Mono', size: 11 } }
+                    },
+                    y: {
+                        grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                        ticks: { color: '#64748b', font: { family: 'JetBrains Mono', size: 11 } }
+                    }
+                }
+            },
+            plugins: [waterfallConnectorPlugin, waterfallDataLabelsPlugin]
+        });
+    }
+
+    let multiYearAssetsChartInstance = null;
+
+    function renderMultiYearAssetsChart() {
+        const canvas = document.getElementById('multiYearAssetsChart');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        if (multiYearAssetsChartInstance) multiYearAssetsChartInstance.destroy();
+
+        const labels = ['2023', '2024', '2025', '2026', '2027', '2028', '2029', '2030'];
+        const cashData = [9.02, 8.52, 6.91, 7.54, 8.49, 9.65, 11.09, 12.80];
+        const recData = [1.17, 1.32, 1.05, 1.10, 1.25, 1.40, 1.60, 1.85];
+        const invData = [11.90, 14.10, 13.31, 11.14, 12.62, 14.29, 16.19, 18.35];
+        const fixedData = [1.71, 0.00, 0.00, 2.11, 1.18, 0.26, 0.00, 0.00];
+
+        multiYearAssetsChartInstance = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [
+                    {
+                        label: 'Bank / Likvider (Cash)',
+                        data: cashData,
+                        backgroundColor: 'rgba(37, 99, 235, 0.85)',
+                        borderColor: '#2563eb',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Fordringer (Receivables)',
+                        data: recData,
+                        backgroundColor: 'rgba(6, 182, 212, 0.85)',
+                        borderColor: '#06b6d4',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Varer (Inventory)',
+                        data: invData,
+                        backgroundColor: 'rgba(245, 158, 11, 0.85)',
+                        borderColor: '#f59e0b',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Anleggsmidler (Fixed Assets)',
+                        data: fixedData,
+                        backgroundColor: 'rgba(139, 92, 246, 0.85)',
+                        borderColor: '#8b5cf6',
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: { color: '#f1f5f9', font: { family: 'Inter', size: 11 } }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(c) { return `${c.dataset.label}: ${c.parsed.y} MNOK`; }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        stacked: true,
+                        grid: { display: false },
+                        ticks: { color: '#94a3b8', font: { family: 'JetBrains Mono', size: 11 } }
+                    },
+                    y: {
+                        stacked: true,
+                        grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                        ticks: {
+                            color: '#64748b',
+                            font: { family: 'JetBrains Mono', size: 11 },
+                            callback: function(v) { return v + ' MNOK'; }
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    function renderAssetTreemap(selectedYear) {
+        const container = document.getElementById('treemapContainer');
+        if (!container) return;
+
+        const yearMap = {
+            '2023': { cash: 9.02, inv: 11.90, rec: 1.17, fixed: 1.71 },
+            '2024': { cash: 8.52, inv: 14.10, rec: 1.32, fixed: 0.00 },
+            '2025': { cash: 6.91, inv: 13.31, rec: 1.05, fixed: 0.00 },
+            '2026': { cash: 7.54, inv: 11.14, rec: 1.10, fixed: 2.11 },
+            '2030': { cash: 12.80, inv: 18.35, rec: 1.85, fixed: 0.00 }
+        };
+
+        const d = yearMap[selectedYear] || yearMap['2025'];
+
+        const items = [
+            { cat: 'Omløpsmidler', name: 'Varer (Inventory)', val: d.inv, skin: 'tile-inventory' },
+            { cat: 'Omløpsmidler', name: 'Bank og kontanter (Cash)', val: d.cash, skin: 'tile-cash' },
+            { cat: 'Omløpsmidler', name: 'Fordringer (Receivables)', val: d.rec, skin: 'tile-receivables' },
+            { cat: 'Anleggsmidler', name: 'Anleggsmidler (Fixed Assets)', val: d.fixed, skin: 'tile-fixed' }
+        ];
+
+        const totalDetailed = items.reduce((sum, it) => sum + it.val, 0);
+        items.sort((a, b) => b.val - a.val);
+
+        container.innerHTML = `
+            <div class="treemap-grid">
+                ${items.map(item => {
+                    const pct = totalDetailed > 0 ? ((item.val / totalDetailed) * 100).toFixed(1) : '0.0';
+                    return `
+                        <div class="treemap-tile ${item.skin}">
+                            <div>
+                                <div class="treemap-cat">${item.cat}</div>
+                                <div class="treemap-name">${item.name}</div>
+                            </div>
+                            <div class="treemap-bottom">
+                                <div class="treemap-val">NOK ${item.val.toFixed(2)}M</div>
+                                <div class="treemap-badge">${pct}%</div>
+                            </div>
+                        </div>
+                    `;
+                }).join('')}
+            </div>
+        `;
+    }
+
+    // Initial default search load & visuals
     fetchCompanyByOrgnr('913227447');
+    setTimeout(() => {
+        renderWaterfallChart(standardWaterfallData);
+        renderMultiYearAssetsChart();
+        renderAssetTreemap('2025');
+    }, 100);
 </script>
 
 </body>
