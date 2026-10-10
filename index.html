@@ -992,6 +992,8 @@
         </div>
         <div class="preset-pills">
             <span class="preset-label">Sample Entities:</span>
+            <button class="preset-btn" onclick="fetchCompanyByOrgnr('925822426')">SØRLEGGEREN VVS AS (925822426)</button>
+            <button class="preset-btn" onclick="fetchCompanyByOrgnr('994975749')">AGDER TAK AS (994975749)</button>
             <button class="preset-btn" onclick="fetchCompanyByOrgnr('911823705')">AMOK EQUIPMENT AS (911823705)</button>
             <button class="preset-btn" onclick="fetchCompanyByOrgnr('953187889')">UMOE MANDAL AS (953187889)</button>
             <button class="preset-btn" onclick="fetchCompanyByOrgnr('923609016')">EQUINOR ASA (923609016)</button>
@@ -1013,11 +1015,11 @@
             <div class="info-grid">
                 <div class="info-item">
                     <span class="info-label">Company Name</span>
-                    <span id="dispName" class="info-value">AMOK EQUIPMENT AS</span>
+                    <span id="dispName" class="info-value">SØRLEGGEREN VVS AS</span>
                 </div>
                 <div class="info-item">
                     <span class="info-label">Organization Number</span>
-                    <span id="dispOrgnr" class="info-value mono">911 823 705</span>
+                    <span id="dispOrgnr" class="info-value mono">925 822 426</span>
                 </div>
                 <div class="info-item">
                     <span class="info-label">Organization Form</span>
@@ -1025,19 +1027,19 @@
                 </div>
                 <div class="info-item">
                     <span class="info-label">Industry Code (Næringskode)</span>
-                    <span id="dispNæring" class="info-value">47.631 Detaljhandel med sportsvarer</span>
+                    <span id="dispNæring" class="info-value">43.221 Rørleggerarbeid</span>
                 </div>
                 <div class="info-item">
                     <span class="info-label">Registered Employees</span>
-                    <span id="dispAnsatte" class="info-value mono">12</span>
+                    <span id="dispAnsatte" class="info-value mono">9</span>
                 </div>
                 <div class="info-item">
                     <span class="info-label">Incorporation Date</span>
-                    <span id="dispStiftet" class="info-value mono">2014-02-18</span>
+                    <span id="dispStiftet" class="info-value mono">2020-09-16</span>
                 </div>
                 <div class="info-item">
                     <span class="info-label">Registered Office (Kommune)</span>
-                    <span id="dispAdresse" class="info-value">TRONDHEIM (5001)</span>
+                    <span id="dispAdresse" class="info-value">KRISTIANSAND (4614)</span>
                 </div>
                 <div class="info-item">
                     <span class="info-label">MVA / Bankruptcy Status</span>
@@ -1261,13 +1263,13 @@
 <script>
     // State management
     let currentCompany = {
-        name: 'AMOK EQUIPMENT AS',
-        orgnr: '911823705',
+        name: 'SØRLEGGEREN VVS AS',
+        orgnr: '925822426',
         orgForm: 'Aksjeselskap (AS)',
-        naering: '47.631 Detaljhandel med sportsvarer',
-        ansatte: 8,
-        stiftet: '2013-04-08',
-        adresse: 'FREDRIKSTAD (1630)',
+        naering: '43.221 Rørleggerarbeid',
+        ansatte: 9,
+        stiftet: '2020-09-16',
+        adresse: 'KRISTIANSAND (4614)',
         mva: true,
         konkurs: false
     };
@@ -1554,7 +1556,15 @@
         let solidTrend = 'up';
 
         // Check company Org Nr or baseline inputs
-        if (comp && comp.orgnr === '923609016') { // Equinor
+        if (comp && comp.orgnr === '925822426') { // Sørleggeren VVS AS
+            likvVal = 1.72; likvPrev = 1.45; likvTrend = 'up';
+            lonnVal = 7.8; lonnPrev = 6.2; lonnTrend = 'up';
+            solidVal = 39.5; solidPrev = 36.8; solidTrend = 'up';
+        } else if (comp && comp.orgnr === '994975749') { // Agder Tak AS
+            likvVal = 1.85; likvPrev = 1.60; likvTrend = 'up';
+            lonnVal = 8.4; lonnPrev = 7.1; lonnTrend = 'up';
+            solidVal = 44.2; solidPrev = 41.0; solidTrend = 'up';
+        } else if (comp && comp.orgnr === '923609016') { // Equinor
             likvVal = 1.65; likvPrev = 1.48; likvTrend = 'up';
             lonnVal = 18.4; lonnPrev = 15.2; lonnTrend = 'up';
             solidVal = 42.5; solidPrev = 40.1; solidTrend = 'up';
@@ -2291,7 +2301,7 @@ Respond ONLY with valid JSON in this exact structure without markdown backticks:
     }
 
     // Initial default search load & visuals
-    fetchCompanyByOrgnr('911823705');
+    fetchCompanyByOrgnr('925822426');
     setTimeout(() => {
         renderFinancialGaugeWidgets(currentCompany);
         renderWaterfallChart(standardWaterfallData);
