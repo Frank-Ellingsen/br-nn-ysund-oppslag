@@ -992,6 +992,7 @@
         </div>
         <div class="preset-pills">
             <span class="preset-label">Sample Entities:</span>
+            <button class="preset-btn" onclick="fetchCompanyByOrgnr('879688302')">RØR I SØR AS (879688302)</button>
             <button class="preset-btn" onclick="fetchCompanyByOrgnr('925822426')">SØRLEGGEREN VVS AS (925822426)</button>
             <button class="preset-btn" onclick="fetchCompanyByOrgnr('994975749')">AGDER TAK AS (994975749)</button>
             <button class="preset-btn" onclick="fetchCompanyByOrgnr('911823705')">AMOK EQUIPMENT AS (911823705)</button>
@@ -1015,11 +1016,11 @@
             <div class="info-grid">
                 <div class="info-item">
                     <span class="info-label">Company Name</span>
-                    <span id="dispName" class="info-value">SØRLEGGEREN VVS AS</span>
+                    <span id="dispName" class="info-value">RØR I SØR AS</span>
                 </div>
                 <div class="info-item">
                     <span class="info-label">Organization Number</span>
-                    <span id="dispOrgnr" class="info-value mono">925 822 426</span>
+                    <span id="dispOrgnr" class="info-value mono">879 688 302</span>
                 </div>
                 <div class="info-item">
                     <span class="info-label">Organization Form</span>
@@ -1031,15 +1032,15 @@
                 </div>
                 <div class="info-item">
                     <span class="info-label">Registered Employees</span>
-                    <span id="dispAnsatte" class="info-value mono">9</span>
+                    <span id="dispAnsatte" class="info-value mono">26</span>
                 </div>
                 <div class="info-item">
                     <span class="info-label">Incorporation Date</span>
-                    <span id="dispStiftet" class="info-value mono">2020-09-16</span>
+                    <span id="dispStiftet" class="info-value mono">1998-03-06</span>
                 </div>
                 <div class="info-item">
                     <span class="info-label">Registered Office (Kommune)</span>
-                    <span id="dispAdresse" class="info-value">KRISTIANSAND (4614)</span>
+                    <span id="dispAdresse" class="info-value">KRISTIANSAND (4636)</span>
                 </div>
                 <div class="info-item">
                     <span class="info-label">MVA / Bankruptcy Status</span>
@@ -1263,13 +1264,13 @@
 <script>
     // State management
     let currentCompany = {
-        name: 'SØRLEGGEREN VVS AS',
-        orgnr: '925822426',
+        name: 'RØR I SØR AS',
+        orgnr: '879688302',
         orgForm: 'Aksjeselskap (AS)',
         naering: '43.221 Rørleggerarbeid',
-        ansatte: 9,
-        stiftet: '2020-09-16',
-        adresse: 'KRISTIANSAND (4614)',
+        ansatte: 26,
+        stiftet: '1998-03-06',
+        adresse: 'KRISTIANSAND (4636)',
         mva: true,
         konkurs: false
     };
@@ -1464,6 +1465,7 @@
         document.getElementById('inputEacRisk').value = risk.toFixed(1);
 
         renderFinancialGaugeWidgets(comp);
+        runPrognosisForCompany(false);
     }
 
     function createGaugeWidgetHtml(tag, status, valueStr, trend, prevStr, val, minV, maxV) {
@@ -1556,7 +1558,11 @@
         let solidTrend = 'up';
 
         // Check company Org Nr or baseline inputs
-        if (comp && comp.orgnr === '925822426') { // Sørleggeren VVS AS
+        if (comp && comp.orgnr === '879688302') { // Rør i Sør AS
+            likvVal = 1.92; likvPrev = 1.65; likvTrend = 'up';
+            lonnVal = 9.1; lonnPrev = 7.5; lonnTrend = 'up';
+            solidVal = 41.5; solidPrev = 38.0; solidTrend = 'up';
+        } else if (comp && comp.orgnr === '925822426') { // Sørleggeren VVS AS
             likvVal = 1.72; likvPrev = 1.45; likvTrend = 'up';
             lonnVal = 7.8; lonnPrev = 6.2; lonnTrend = 'up';
             solidVal = 39.5; solidPrev = 36.8; solidTrend = 'up';
@@ -1662,8 +1668,8 @@
         container.innerHTML = htmlLikv + htmlLonn + htmlSolid;
     }
 
-    // Run AI Diagnosis & Prognosis
-    btnRunAi.addEventListener('click', async () => {
+    // Run AI Diagnosis & Prognosis Function
+    async function runPrognosisForCompany(scrollIntoView = false) {
         btnRunAi.disabled = true;
         btnRunAi.innerHTML = `<div class="spinner"></div> Synthesizing AI Analysis...`;
 
@@ -1691,7 +1697,13 @@
         btnRunAi.disabled = false;
         btnRunAi.innerHTML = `<span>🤖 Run Strategic AI Diagnosis & S-Curve Prognosis</span>`;
         aiOutputSection.style.display = 'block';
-        aiOutputSection.scrollIntoView({ behavior: 'smooth' });
+        if (scrollIntoView) {
+            aiOutputSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+
+    btnRunAi.addEventListener('click', () => {
+        runPrognosisForCompany(true);
     });
 
     async function callGeminiAPI(apiKey, comp, rev, ebitda, nwc, risk) {
@@ -2174,17 +2186,20 @@ Respond ONLY with valid JSON in this exact structure without markdown backticks:
 
     let multiYearAssetsChartInstance = null;
 
-    function renderMultiYearAssetsChart() {
+    function renderMultiYearAssetsChart(revScale) {
         const canvas = document.getElementById('multiYearAssetsChart');
         if (!canvas) return;
         const ctx = canvas.getContext('2d');
         if (multiYearAssetsChartInstance) multiYearAssetsChartInstance.destroy();
 
+        const baseRev = revScale || parseFloat(document.getElementById('inputRevenue')?.value) || 50.0;
+        const scale = baseRev / 50.0;
+
         const labels = ['2023', '2024', '2025', '2026', '2027', '2028', '2029', '2030'];
-        const cashData = [9.02, 8.52, 6.91, 7.54, 8.49, 9.65, 11.09, 12.80];
-        const recData = [1.17, 1.32, 1.05, 1.10, 1.25, 1.40, 1.60, 1.85];
-        const invData = [11.90, 14.10, 13.31, 11.14, 12.62, 14.29, 16.19, 18.35];
-        const fixedData = [1.71, 0.00, 0.00, 2.11, 1.18, 0.26, 0.00, 0.00];
+        const cashData = [9.02, 8.52, 6.91, 7.54, 8.49, 9.65, 11.09, 12.80].map(v => +(v * scale).toFixed(2));
+        const recData = [1.17, 1.32, 1.05, 1.10, 1.25, 1.40, 1.60, 1.85].map(v => +(v * scale).toFixed(2));
+        const invData = [11.90, 14.10, 13.31, 11.14, 12.62, 14.29, 16.19, 18.35].map(v => +(v * scale).toFixed(2));
+        const fixedData = [1.71, 0.00, 0.00, 2.11, 1.18, 0.26, 0.00, 0.00].map(v => +(v * scale).toFixed(2));
 
         multiYearAssetsChartInstance = new Chart(ctx, {
             type: 'bar',
@@ -2255,16 +2270,19 @@ Respond ONLY with valid JSON in this exact structure without markdown backticks:
         });
     }
 
-    function renderAssetTreemap(selectedYear) {
+    function renderAssetTreemap(selectedYear, revScale) {
         const container = document.getElementById('treemapContainer');
         if (!container) return;
 
+        const baseRev = revScale || parseFloat(document.getElementById('inputRevenue')?.value) || 50.0;
+        const scale = baseRev / 50.0;
+
         const yearMap = {
-            '2023': { cash: 9.02, inv: 11.90, rec: 1.17, fixed: 1.71 },
-            '2024': { cash: 8.52, inv: 14.10, rec: 1.32, fixed: 0.00 },
-            '2025': { cash: 6.91, inv: 13.31, rec: 1.05, fixed: 0.00 },
-            '2026': { cash: 7.54, inv: 11.14, rec: 1.10, fixed: 2.11 },
-            '2030': { cash: 12.80, inv: 18.35, rec: 1.85, fixed: 0.00 }
+            '2023': { cash: 9.02 * scale, inv: 11.90 * scale, rec: 1.17 * scale, fixed: 1.71 * scale },
+            '2024': { cash: 8.52 * scale, inv: 14.10 * scale, rec: 1.32 * scale, fixed: 0.00 * scale },
+            '2025': { cash: 6.91 * scale, inv: 13.31 * scale, rec: 1.05 * scale, fixed: 0.00 * scale },
+            '2026': { cash: 7.54 * scale, inv: 11.14 * scale, rec: 1.10 * scale, fixed: 2.11 * scale },
+            '2030': { cash: 12.80 * scale, inv: 18.35 * scale, rec: 1.85 * scale, fixed: 0.00 * scale }
         };
 
         const d = yearMap[selectedYear] || yearMap['2025'];
@@ -2301,13 +2319,7 @@ Respond ONLY with valid JSON in this exact structure without markdown backticks:
     }
 
     // Initial default search load & visuals
-    fetchCompanyByOrgnr('925822426');
-    setTimeout(() => {
-        renderFinancialGaugeWidgets(currentCompany);
-        renderWaterfallChart(standardWaterfallData);
-        renderMultiYearAssetsChart();
-        renderAssetTreemap('2025');
-    }, 100);
+    fetchCompanyByOrgnr('879688302');
 </script>
 
 </body>
