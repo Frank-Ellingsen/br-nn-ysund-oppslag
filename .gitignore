@@ -1,0 +1,19 @@
+# Operating System files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE & Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment & Local secrets
+.env
+.env.local
+*.log
+
+# Dependencies (if any)
+node_modules/
+dist/
